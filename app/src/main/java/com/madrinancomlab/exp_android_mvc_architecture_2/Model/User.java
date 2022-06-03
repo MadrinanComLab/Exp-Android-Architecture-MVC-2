@@ -1,5 +1,8 @@
 package com.madrinancomlab.exp_android_mvc_architecture_2.Model;
 
+import android.text.TextUtils;
+import android.util.Patterns;
+
 public class User implements InterfaceUser
 {
     private String email, password;
@@ -13,18 +16,22 @@ public class User implements InterfaceUser
     @Override
     public String getEmail()
     {
-        return null;
+        return email;
     }
 
     @Override
     public String getPassword()
     {
-        return null;
+        return password;
     }
 
     @Override
     public int isValid()
     {
-        return 0;
+        if (TextUtils.isEmpty(getEmail())) return 0;
+        else if (!Patterns.EMAIL_ADDRESS.matcher(getEmail()).matches()) return 1;
+        else if (TextUtils.isEmpty(getPassword())) return 2;
+        else if (getPassword().length() <= 6) return 3;
+        else return -1;
     }
 }

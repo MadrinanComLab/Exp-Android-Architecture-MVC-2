@@ -2,7 +2,9 @@ package com.madrinancomlab.exp_android_mvc_architecture_2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +37,11 @@ public class MainActivity extends AppCompatActivity implements Observer, View.On
         btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(this);
+
+        // SOURCE FOR MASKING THE PASSWORD:
+        // https://stackoverflow.com/questions/27395030/android-hide-password
+        txtPassword.setTypeface(Typeface.DEFAULT);
+        txtPassword.setTransformationMethod(new PasswordTransformationMethod());
     }
 
     @Override
